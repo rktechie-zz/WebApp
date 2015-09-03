@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+</head>
+<body>
+	<form action="UserServlet?action=details" method="post"
+		id="register_form">
+		First Name:<input type="text" name="first_name" id="first_name">
+		Last Name:<input type="text" name="last_name" id="last_name">
+		<input type="button" value="Register" id="register">
+	</form>
+	<div id="message">
+	</div>
+</body>
+
+<script type="text/javascript">
+	$("#register").click(
+			function() {
+				if ($('#first_name').val().trim() == "" || $('#last_name').val().trim() == "") {
+					$('#message').html("Please enter both First Name and Last Name");
+				} else {
+					var first_name = $('#first_name').val().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+					var last_name = $('#last_name').val().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+					$('#first_name').val(first_name);
+					$('#last_name').val(last_name);
+					$("#register_form").submit();
+				}
+			});
+</script>
+</html>
